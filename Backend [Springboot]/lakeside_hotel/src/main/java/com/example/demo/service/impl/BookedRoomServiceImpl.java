@@ -1,5 +1,7 @@
 package com.example.demo.service.impl;
 
-public class BookedRoomServiceImpl {
+import com.example.demo.service.BookedRoomService;
+
+public class BookedRoomServiceImpl  implements BookedRoomService{
 
 }
