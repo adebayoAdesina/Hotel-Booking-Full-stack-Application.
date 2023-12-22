@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { AddRoom } from '../utils/ApiFunctions'
+import { addRoom } from '../utils/ApiFunctions'
+import RoomTypeSelector from '../common/RoomTypeSelector'
 
 const AddRoom = () => {
     const [newRoom, setNewRoom] = useState({
@@ -36,7 +37,7 @@ const AddRoom = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const success = await AddRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice);
+            const success = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice);
             if (success !== undefined) {
                 setSuccessMessage("A new room was added to the database")
                 setNewRoom({photo: null, roomType:"", roomPrice:""})
@@ -59,7 +60,10 @@ const AddRoom = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="roomType" className="form-label">Room Type</label>
-                            <div></div>
+                            <div>
+                                
+                                <RoomTypeSelector handleRoomInputChange={handleRoomInputChange} newRoom={newRoom}/>
+                            </div>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="roomType" className="form-label">Room Price</label>
@@ -67,7 +71,7 @@ const AddRoom = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="roomType" className="form-label">Room Photo</label>
-                            <input type="file" className="form-control" required id="photo" name='photo' value={newRoom.roomPrice} onChange={handleRoomInputChange}/>
+                            <input type="file" className="form-control" required id="photo" name='photo'  onChange={handleImageChange}/>
                         </div>
                         {imagePreview && (
                             <img src={imagePreview} alt="Preview room photo" style={{maxWidth

@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "http://localhost:9091/api/v1/"
+    baseURL: "http://localhost:9091/api/v1"
 })
 
 // This function add new room type from database
-export async function AddRoom(photo, roomType, roomPrice) {
+export async function addRoom(photo, roomType, roomPrice) {
     const formData = new FormData();
     formData.append("photo", photo);
     formData.append("room_type", roomType);

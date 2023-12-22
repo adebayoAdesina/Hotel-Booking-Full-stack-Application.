@@ -53,16 +53,16 @@ body {
  }
 
   /* Hotel custom color */
- .btn-hotel{
-  background-color: rgb(169, 77, 123);
-  color: #fff;
+ .btn-hotel {
+  background-color: rgb(169, 77, 123) !important;
+  color: #fff !important;
   }
   .btn-hotel:hover{
-  background-color: rgb(137, 127, 132);
-  color: #fff;
-  transition: 0.7s;
-  outline-color: transparent;
-  outline-style:solid;
+  background-color: rgb(137, 127, 132) !important;
+  color: #fff !important;
+  transition: 0.7s !important;
+  outline-color: transparent !important;
+  outline-style:solid !important;
 
   }
 
