@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { GetRoomTypes } from '../utils/ApiFunctions'
+import { getRoomTypes } from '../utils/ApiFunctions'
 import '../../index.css'
 
 const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
-    const[roomTypes, setRoomTypes] = useState([])
+    const[roomTypes, setRoomTypes] = useState([""])
     const[showRoomTypeInput, setShowRoomTypeInput] = useState(false)
     const[newRoomType, setNewRoomType] = useState("")
 
     useEffect(() => {
-   GetRoomTypes().then((data)=> {
-    setRoomTypes(data)
-   })
+      getRoomTypes().then((data)=> {
+        setRoomTypes(data)
+     })
     
     }, [])
 
@@ -20,14 +20,14 @@ const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
     
     const handleAddNewRoomType = () => {
         if (newRoomType !== "") {
-          setRoomTypes(...roomTypes, newRoomType)
+          setRoomTypes([...roomTypes, newRoomType])
           setNewRoomType()
           setShowRoomTypeInput(false)
         }
     }
   return (
     <>
-      {roomTypes.length == 0 && (
+      {roomTypes.length != 0 && (
         <div>
           <select name="roomType" id="roomType" className='form-select' value={newRoom.roomTypes} onChange={(e) => {
             if (e.target.value === "Add new") {

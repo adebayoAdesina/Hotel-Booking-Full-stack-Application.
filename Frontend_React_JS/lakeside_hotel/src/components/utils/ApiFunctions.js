@@ -20,11 +20,13 @@ export async function addRoom(photo, roomType, roomPrice) {
 };
 
 // This function get all room type from database
-export async function GetRoomTypes() {
+export const getRoomTypes = async () => {
     try {
         const response = await api.get("/rooms/room-types")
+        console.log(response.data)
         return response.data;
     } catch (error) {
         throw new  Error("Error fetching room")
+        // throw new Error(error)
     }
 }

@@ -18,7 +18,7 @@ const AddRoom = () => {
         let value = e.target.value;
         if(name == "roomPrice") {
             if (!isNaN(value)) {
-                value.parseInt(value)
+                value=parseInt(value)
             }
             else {
                 value = ""
@@ -49,6 +49,10 @@ const AddRoom = () => {
         } catch (error) {
             setErrorMessage(error.message)
         }
+        setTimeout(() => {
+            setSuccessMessage("")
+            setErrorMessage("")
+        }, 3000)
     }
 
   return (
@@ -57,6 +61,21 @@ const AddRoom = () => {
             <div className='row justify-content-center'>
                 <div className='col-md-8 col-lg-6'>
                     <h2 className='mt-5 mb-2'>Add New Room</h2>
+                    {
+                        successMessage && (
+                            <div className='alert alert-success fade show'>
+                                {successMessage}
+                            </div>
+                        )
+                    }
+                    {
+                        errorMessage && (
+                            <div className='alert alert-dager fade show'>
+                                {errorMessage}
+                            </div>
+                        )
+                    }
+
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="roomType" className="form-label">Room Type</label>
