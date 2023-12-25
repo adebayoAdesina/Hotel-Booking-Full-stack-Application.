@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -14,9 +15,16 @@ import com.example.demo.model.Room;
 import com.example.demo.repository.RoomRepository;
 import com.example.demo.service.RoomService;
 
+import lombok.AllArgsConstructor;
+
 @Service
 public class RoomServiceImpl implements RoomService{
 	private RoomRepository roomRepository;
+
+	public RoomServiceImpl(RoomRepository roomRepository) {
+		super();
+		this.roomRepository = roomRepository;
+	}
 
 	@Override
 	public Room addNewRoom(MultipartFile photo, String roomType, BigDecimal roomPrice) {
@@ -44,6 +52,11 @@ public class RoomServiceImpl implements RoomService{
 		}
 		
 		return roomRepository.save(room);
+	}
+
+	@Override
+	public List<String> getAllRoomTypes() {
+		return roomRepository.findDistinctRoomTypes();
 	}
 
 }
