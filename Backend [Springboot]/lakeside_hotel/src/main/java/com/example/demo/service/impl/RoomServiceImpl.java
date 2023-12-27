@@ -5,12 +5,14 @@ import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Room;
 import com.example.demo.repository.RoomRepository;
 import com.example.demo.service.RoomService;
@@ -57,6 +59,26 @@ public class RoomServiceImpl implements RoomService{
 	@Override
 	public List<String> getAllRoomTypes() {
 		return roomRepository.findDistinctRoomTypes();
+	}
+
+	@Override
+	public List<Room> getAllRoom() {
+		// TODO Auto-generated method stub
+		return roomRepository.findAll();
+	}
+
+	@Override
+	public byte[] getRoomPhotoByRoomId(Long id) throws SQLException{
+		// TODO Auto-generated method stub
+		Optional<Room> theRoomOptional = roomRepository.findById(id);
+		if(theRoomOptional.isEmpty()) {
+			throw new ResourceNotFoundException("Sorry, Room not found!");
+		}
+		Blob photoBlob = theRoomOptional.get().getPhoto();
+		if (photoBlob != null) {
+			return photoBlob.getBytes(1, (int) photoBlob.length());
+		}
+		return null;
 	}
 
 }
