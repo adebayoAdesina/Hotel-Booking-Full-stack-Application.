@@ -38,3 +38,31 @@ export const getAllRooms = async () => {
         throw new  Error("Error fetching room")
     }
 }
+
+//For deleting Room by Id
+export const deleteRoom = async (roomId) => {
+    try {
+        const result = await api.delete(`/rooms/delete/room/${roomId}`)
+        return result.data;
+    } catch (error) {
+        throw new Error(`An error occur ${error.message}`)
+    }
+}
+
+export const updateRoom = async (roomId, roomData) => {
+    const formData = new FormData();
+    formData.append("photo", roomData.photo);
+    formData.append("room_type", roomData.roomType);
+    formData.append("room_price", roomData.roomPrice);
+    const response = await api.put(`/rooms/update/${roomId}`, formData)
+    return response;
+}
+
+export const getRoomById = async(roomId) => {
+    try {
+        const result = await api.get(`/rooms/room/${roomId}`)
+        return result.data
+    } catch (error) {
+        throw new Error('Error fetching data')
+    }
+}

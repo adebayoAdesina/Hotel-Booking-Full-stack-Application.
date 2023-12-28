@@ -8,6 +8,7 @@ const RoomFilter = ({data, setFilteredData}) => {
         const filteredRooms = data.filter((room) => 
         room.roomType.toLowerCase()
         .includes(selectedRoomType.toLowerCase()))
+        console.log(filteredRooms)
         setFilteredData(filteredRooms)
     }
 
