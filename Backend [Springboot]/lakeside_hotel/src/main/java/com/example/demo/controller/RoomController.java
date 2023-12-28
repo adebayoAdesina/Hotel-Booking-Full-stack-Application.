@@ -10,7 +10,9 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,6 +74,12 @@ public class RoomController {
 			}
 		}
 		return new ResponseEntity<List<RoomResponse>>(roomResponses, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("rooms/delete/room/{roomId}")
+	public ResponseEntity<Void> deleteRoom(@PathVariable("roomId") Long roomId) {
+		roomService.deleteRoom(roomId);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 	
 	private RoomResponse getRoomResponse(Room room) {
