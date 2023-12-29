@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { addRoom } from '../utils/ApiFunctions'
 import RoomTypeSelector from '../common/RoomTypeSelector'
-import ExistingRooms from './ExistingRooms'
+import { Link } from 'react-router-dom'
 
 const AddRoom = () => {
     const [newRoom, setNewRoom] = useState({
@@ -98,11 +98,12 @@ const AddRoom = () => {
                             : "400px", maxHeight: "400px"}} className='mb-3'/>
                         )}
                         <div className='d-grid d-md-flex mt-2'>
+                            <Link to={"/existing-rooms"} className="btn btn-outline-info">
+                                Back to existing Room
+                            </Link>
                             <button className="btn btn-outline-primary ml-5">Save Room</button>
                         </div>
                     </form>
-
-                    <ExistingRooms/>
                 </div>
             </div>
         </section>
