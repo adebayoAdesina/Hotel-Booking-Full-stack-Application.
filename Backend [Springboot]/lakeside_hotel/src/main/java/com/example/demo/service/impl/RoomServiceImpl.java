@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -91,6 +92,36 @@ public class RoomServiceImpl implements RoomService{
 			System.out.println("not found");
 		}
 		
+	}
+
+	@Override
+	public Room updateRoom(Long roomId, String roomType, BigDecimal roomPrice, byte[] photobyte) {
+		// TODO Auto-generated method stub
+		Room room = roomRepository.findById(roomId).orElseThrow(()-> new ResourceNotFoundException("Room not found"));
+		if (roomType != null) {
+			room.setRoomType(roomType);
+		}
+		if (roomPrice != null) {
+			room.setRoomPrice(roomPrice);	
+		}
+		if (photobyte != null && photobyte.length > 0 ) {
+			try {
+				room.setPhoto(new SerialBlob(photobyte));
+			} catch (SerialException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return roomRepository.save(room);
+	}
+
+	@Override
+	public Optional<Room> getRoomId(Long roomId) {
+		// TODO Auto-generated method stub
+		return Optional.of(roomRepository.findById(roomId).get());
 	}
 
 }
