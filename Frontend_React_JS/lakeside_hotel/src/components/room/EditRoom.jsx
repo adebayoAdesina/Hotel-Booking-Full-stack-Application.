@@ -35,6 +35,7 @@ const EditRoom = () => {
             const roomData = await getRoomById(roomId)
             setRoom(roomData);
             console.log(roomData)
+            console.error(atob(roomData.photo))
             setImagePreview(roomData.photo)
           } catch (error) {
             console.error(error)
