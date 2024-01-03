@@ -111,7 +111,7 @@ public class RoomController {
 		Optional<Room> theRoom = roomService.getRoomId(roomId); 
 		return theRoom.map(room -> {
 			RoomResponse roomResponse = getRoomResponse(room);
-			return new ResponseEntity<>(Optional.of(roomResponse), HttpStatus.OK);
+			return ResponseEntity.ok(Optional.of(roomResponse));
 		}).orElseThrow(()-> new ResourceNotFoundException("Room not found"));
 	}
 	
