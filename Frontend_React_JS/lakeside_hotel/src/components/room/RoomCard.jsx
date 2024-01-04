@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Card, Col } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
@@ -9,8 +10,10 @@ const RoomCard = ({room}) => {
     <Card className="p-2">
         <Card.Body className="d-flex flex-wrap align-items-center p-0">
             <div className="flex-shrink-0 mr-3 mb-3 mb-md-0">
+            <Link to={`/book-room/${room.id}`} className="btn btn-hotel btn-sm">
                 <Card.Img varient="top" src={`data:image/png;base64, ${room.photo}`}
                 alt= 'Room Photo' style={{width: "100%", maxWidth: "200px", height: "auto"}}/>
+            </Link>
             </div>
             <div className="flex-grow-1 ml-3 px-5 text-start">
                 <Card.Title className="hotel-color">{room.roomType}</Card.Title>
@@ -18,7 +21,7 @@ const RoomCard = ({room}) => {
                 <Card.Text>Some room information goes here for the guest to read through</Card.Text>
             </div>
             <div className="flex-shrink-0 mt-3">
-                <Link to={`bookings/${room.id}`} className="btn btn-hotel btn-sm">
+                <Link to={`/book-room/${room.id}`} className="btn btn-hotel btn-sm">
                     Book Now
                 </Link>
             </div>
