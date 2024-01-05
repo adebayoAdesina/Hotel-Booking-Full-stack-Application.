@@ -187,6 +187,6 @@ cd Frontend_React_JS\lakeside_hotel
 
 ## Screenshot
 <div style="display: grid; grid-column: 2;">
-<img src='readme_screenshot/Screenshot_(186).png' width='200'>
-<img src='readme_screenshot/Screenshot_(185).png' width='200'>
+<img src='readme_screenshot/Screenshot_(186).png' width='800'>
+<img src='readme_screenshot/Screenshot_(185).png' width='800'>
 </div>
